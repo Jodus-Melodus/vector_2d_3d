@@ -1,0 +1,8 @@
+[package]
+name = "vector2D3D"
+version = "0.1.0"
+edition = "2021"
+description = "Simple small library for 2D and 3D vectors"
+license = "MIT"
+
+[dependencies]
