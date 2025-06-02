@@ -7,9 +7,17 @@ pub struct Vector2D {
 }
 
 impl Vector2D {
-    pub fn new(x: f32, y: f32) -> Self {
+    pub fn from_coords(x: f32, y: f32) -> Self {
         Vector2D { x, y }
     }
+
+    pub fn from_mag_theta(magnitude: f32, theta_in_rad: f32) -> Self {
+        Vector2D {
+            x: magnitude * theta_in_rad.cos(),
+            y: magnitude * theta_in_rad.sin(),
+        }
+    }
+
     pub fn ihat() -> Self {
         Vector2D { x: 1.0, y: 0.0 }
     }
@@ -113,8 +121,33 @@ pub struct Vector3D {
 }
 
 impl Vector3D {
-    pub fn new(x: f32, y: f32, z: f32) -> Self {
+    pub fn from_coords(x: f32, y: f32, z: f32) -> Self {
         Vector3D { x, y, z }
+    }
+
+    pub fn from_mag_alpha_beta_gamma(
+        magnitude: f32,
+        alpha_in_rad: f32,
+        beta_in_rad: f32,
+        gamma_in_rad: f32,
+    ) -> Self {
+        Vector3D {
+            x: magnitude * alpha_in_rad.cos(),
+            y: magnitude * beta_in_rad.cos(),
+            z: magnitude * gamma_in_rad.cos(),
+        }
+    }
+
+    pub fn from_mag_azimuthal_polar(
+        magnitude: f32,
+        azimuthal_in_rad: f32,
+        polar_in_rad: f32,
+    ) -> Self {
+        Vector3D {
+            x: magnitude * polar_in_rad.sin() * azimuthal_in_rad.cos(),
+            y: magnitude * polar_in_rad.sin() * azimuthal_in_rad.sin(),
+            z: magnitude * polar_in_rad.cos(),
+        }
     }
 
     pub fn ihat() -> Self {
@@ -164,17 +197,29 @@ impl Vector3D {
 
     pub fn direction_from_axes(&self) -> Vector3D {
         let mag = self.magnitude();
-        Vector3D {
-            x: (self.x / mag).acos(),
-            y: (self.y / mag).acos(),
-            z: (self.z / mag).acos(),
+        if mag == 0.0 {
+            Vector3D {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            }
+        } else {
+            Vector3D {
+                x: (self.x / mag).acos(), // angle with x-axis (α)
+                y: (self.y / mag).acos(), // angle with y-axis (β)
+                z: (self.z / mag).acos(), // angle with z-axis (γ)
+            }
         }
     }
 
     pub fn direction(&self, other: &Vector3D) -> f32 {
         let dot = self.dot_product(other);
         let mags = self.magnitude() * other.magnitude();
-        (dot / mags).acos()
+        if mags == 0.0 {
+            return 0.0;
+        }
+
+        (dot / mags.clamp(-1.0, 1.0)).acos()
     }
 
     pub fn dot_product(&self, other: &Vector3D) -> f32 {
@@ -333,5 +378,41 @@ mod tests {
         let perp = v.perpendicular();
         // Should be perpendicular to (0,0,1), e.g. (1,0,0)
         assert!(v.dot_product(&perp).abs() < 1e-6);
+    }
+
+    #[test]
+    fn test_vector2d_from_mag_theta() {
+        let magnitude = 10.0;
+        let theta_in_rad = 60.0_f32.to_radians();
+        let v = Vector2D::from_mag_theta(magnitude, theta_in_rad);
+
+        // assert_eq!(v.x, 8.6602545);
+        // assert_eq!(v.y, 5.0);
+    }
+
+    #[test]
+    fn test_vector3d_from_mag_alpha_beta_gamma() {
+        let magnitude = 10.0;
+        let alpha_in_rad = 60.0_f32.to_radians();
+        let beta_in_rad = 45.0_f32.to_radians();
+        let gamma_in_rad = 60.0_f32.to_radians();
+        let v =
+            Vector3D::from_mag_alpha_beta_gamma(magnitude, alpha_in_rad, beta_in_rad, gamma_in_rad);
+
+        assert_eq!(v.x.round(), 5.0);
+        assert_eq!(v.y.round(), 7.0);
+        assert_eq!(v.z.round(), 5.0);
+    }
+
+    #[test]
+    fn test_vector3d_mag_azimuthal_polar() {
+        let magnitude = 10.0;
+        let azimuthal_in_rad = 45.0_f32.to_radians();
+        let polar_in_rad = 60.0_f32.to_radians();
+        let v = Vector3D::from_mag_azimuthal_polar(magnitude, azimuthal_in_rad, polar_in_rad);
+
+        assert_eq!(v.x, 6.1237245);
+        assert_eq!(v.y, 6.1237245);
+        assert_eq!(v.z.round(), 5.0);
     }
 }
