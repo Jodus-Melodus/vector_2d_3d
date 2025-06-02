@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "vector2D3D"
+name = "vector_2d_3d"
 version = "0.1.0"
