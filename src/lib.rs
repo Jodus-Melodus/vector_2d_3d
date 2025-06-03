@@ -7,8 +7,15 @@ pub struct Vector2D {
 }
 
 impl Vector2D {
-    pub fn from_coords(x: f32, y: f32) -> Self {
+    pub fn from_coord(x: f32, y: f32) -> Self {
         Vector2D { x, y }
+    }
+
+    pub fn from_coords(x1: f32, y1: f32, x2: f32, y2: f32) -> Self {
+        Vector2D {
+            x: x2 - x1,
+            y: y2 - y1,
+        }
     }
 
     pub fn from_mag_theta(magnitude: f32, theta_in_rad: f32) -> Self {
@@ -121,7 +128,7 @@ pub struct Vector3D {
 }
 
 impl Vector3D {
-    pub fn from_coords(x: f32, y: f32, z: f32) -> Self {
+    pub fn from_coord(x: f32, y: f32, z: f32) -> Self {
         Vector3D { x, y, z }
     }
 
