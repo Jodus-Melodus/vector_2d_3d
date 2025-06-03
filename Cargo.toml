@@ -1,6 +1,6 @@
 [package]
 name = "vector_2d_3d"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 description = "Simple small library for 2D and 3D vectors"
 license = "MIT"
