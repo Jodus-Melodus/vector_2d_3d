@@ -14,6 +14,12 @@ edition = "2021"
 name = "vector_2d_3d"
 version = "0.3.0"
 build = false
+include = [
+    "src/**",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE",
+]
 autolib = false
 autobins = false
 autoexamples = false
@@ -26,5 +32,3 @@ license = "MIT"
 [lib]
 name = "vector_2d_3d"
 path = "src/lib.rs"
-
-[dependencies]
