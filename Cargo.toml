@@ -6,3 +6,9 @@ description = "Simple small library for 2D and 3D vectors"
 license = "MIT"
 
 [dependencies]
+include = [
+    "src/**",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE"
+]
