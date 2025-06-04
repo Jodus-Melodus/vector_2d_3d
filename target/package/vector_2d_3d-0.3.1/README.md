@@ -13,7 +13,6 @@ struct Vector2D {
 
 ### Functions
 #### Constructors
-- `new` - creates a vector from the x and y coordinate
 - `from_coord` - creates a vector from the x and y coordinate
 - `from_coords` - creates a vector from the two x and y coordinates
 - `from_mag_theta` - creates a vector from the given magnitude and degrees (in radians) from the x-axis
@@ -44,7 +43,6 @@ struct Vector3D {
 ```
 ### Functions
 #### Constructors
-- `new` - creates a vector from the x, y and z coordinate
 - `from_coord` - creates a vector from the x, y and z coordinate
 - `from_mag_alpha_beta_gamma` - creates a vector from the magnitude and angles between the x, y and z-axes
 - `from_mag_asimuthal_polar` - creates a vector from the magnitude and angle azimuthal and polar

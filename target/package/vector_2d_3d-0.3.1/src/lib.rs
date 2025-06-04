@@ -7,10 +7,6 @@ pub struct Vector2D {
 }
 
 impl Vector2D {
-    pub fn new(x: f32, y: f32) -> Self {
-        Vector2D { x, y }
-    }
-
     pub fn from_coord(x: f32, y: f32) -> Self {
         Vector2D { x, y }
     }
@@ -132,10 +128,6 @@ pub struct Vector3D {
 }
 
 impl Vector3D {
-    pub fn new(x: f32, y: f32, z: f32) -> Self {
-        Vector3D { x, y, z }
-    }
-
     pub fn from_coord(x: f32, y: f32, z: f32) -> Self {
         Vector3D { x, y, z }
     }
