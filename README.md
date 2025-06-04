@@ -4,10 +4,10 @@
 
 ## Vector2D
 ```rust
-#[derive(Debug, Copy, Clone)]
-struct Vector2D {
-    x: f32,
-    y: f32,
+#[derive(Debug, Copy, Clone, Deserialize, Serialize)]
+pub struct Vector2D {
+    pub x: f32,
+    pub y: f32,
 }
 ```
 
@@ -35,11 +35,11 @@ Vector2D implements the `Add<f32>`, `Sub<f32>`, `Mul<f32>`, `Div<f32>` traits.
 
 ## Vector3D
 ```rust
-#[derive(Debug, Copy, Clone)]
-struct Vector3D {
-    x: f32,
-    y: f32,
-    z: f32,
+#[derive(Debug, Copy, Clone, Deserialize, Serialize)]
+pub struct Vector3D {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
 }
 ```
 ### Functions

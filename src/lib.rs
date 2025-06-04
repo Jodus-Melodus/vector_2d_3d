@@ -1,6 +1,8 @@
 use std::ops::{Add, Div, Mul, Sub};
 
-#[derive(Debug, Copy, Clone)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Copy, Clone, Deserialize, Serialize)]
 pub struct Vector2D {
     pub x: f32,
     pub y: f32,
@@ -124,7 +126,7 @@ impl Sub for Vector2D {
     }
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Deserialize, Serialize)]
 pub struct Vector3D {
     pub x: f32,
     pub y: f32,
