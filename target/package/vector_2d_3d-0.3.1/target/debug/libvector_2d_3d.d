@@ -1,1 +1,0 @@
-C:\Users\Philip\Documents\Documents\programming\libraries\rust\vector\target\package\vector_2d_3d-0.3.1\target\debug\libvector_2d_3d.rlib: C:\Users\Philip\Documents\Documents\programming\libraries\rust\vector\target\package\vector_2d_3d-0.3.1\src\lib.rs
