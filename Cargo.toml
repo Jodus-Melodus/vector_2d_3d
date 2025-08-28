@@ -1,6 +1,6 @@
 [package]
 name = "vector_2d_3d"
-version = "0.5.0"
+version = "0.5.1"
 edition = "2021"
 description = "Simple small library for 2D and 3D vectors"
 license = "MIT"
@@ -10,6 +10,7 @@ include = [
     "README.md",
     "LICENSE"
 ]
+deprecated = "This crate is deprecated. Please use `minmath` instead."
 
 [dependencies]
 serde = {version = "1.0.219", features = ["derive"]}
